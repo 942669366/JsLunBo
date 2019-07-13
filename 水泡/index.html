@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<link rel="stylesheet" href="css/css1.css" />
+	<body>
+	<div class="wrap">
+		<div class="bubbles" num="50" duration="10">
+		</div>
+	</div>
+	<script>
+		(function(w,d){
+			var bubbles = d.querySelector('.bubbles');
+			var bubblesWith = bubbles.clientWidth;
+			var num = bubbles.getAttribute('num');
+			var duration = bubbles.getAttribute('duration');
+			bubleUp();
+			setInterval(bubleUp,duration * 1000);
+			
+			function bubleUp(){
+				for (var i = 0;i<num;i++) {
+					var bubbleDiv = d.createElement('div');
+					bubbleDiv.classList.add('bubble');
+					bubbleDiv.style.cssText = `
+						transform:translate(${bubblesWith * Math.random()}px,0) scale(${5 * Math.random()});
+						animation: up ${duration * Math.random() + 1}s ease-in-out;
+					`
+					bubbles.appendChild(bubbleDiv);
+				};
+			};
+		})(window,document);
+	</script>
+	</body>
+</html>
